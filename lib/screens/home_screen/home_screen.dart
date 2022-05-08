@@ -1,17 +1,168 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vegi/screens/home_screen/drawer_sidee.dart';
 import 'package:vegi/screens/home_screen/single_product.dart';
+import 'package:vegi/screens/product_overview/product_overview.dart';
 import 'package:vegi/screens/search/search.dart';
 
-class HomeScreen extends StatelessWidget {
- 
+import '../../providers/product_provider.dart';
 
+class HomeScreen extends StatefulWidget {
 
+  
 
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+
+late ProductProvider productProvider;
+
+  Widget _buildHerbsProduct() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 17),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Hearbs Seasoning",
+              ),
+              Text(
+                "view all",
+                style: TextStyle(color: Colors.grey),
+              ),
+            ],
+          ),
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              GestureDetector(
+                child: SingleProduct(
+                  productName: "Fruits",
+                  productImage: "assets/vegetable1.jpg",
+                  // onTap: () {
+                  //   Navigator.of(context).push(MaterialPageRoute(
+                  //       builder: (context) => ProductOverview(
+                  //             productImage: "assets/vegetable1.jpg",
+                  //             productName: "hello",
+                  //           )));
+                  // },
+                ),
+              ),
+              SingleProduct( productName: "Fruits",
+                  productImage: "assets/vegetable1.jpg",),
+              SingleProduct( productName: "Fruits",
+                  productImage: "assets/vegetable1.jpg",),
+              // SingleProduct( productName: "Fruits",
+              //     productImage: "assets/vegetable1.jpg",),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFreshProduct() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 17),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Fresh Fruits",
+              ),
+              Text(
+                "view all",
+                style: TextStyle(color: Colors.grey),
+              ),
+            ],
+          ),
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              SingleProduct( productName: "Fruits",
+                  productImage: "assets/vegetable1.jpg",),
+              SingleProduct( productName: "Fruits",
+                  productImage: "assets/vegetable1.jpg",),
+              SingleProduct( productName: "Fruits",
+                  productImage: "assets/vegetable1.jpg",),
+              SingleProduct( productName: "Fruits",
+                  productImage: "assets/vegetable1.jpg",),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRootProduct() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 17),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Root Vegetable",
+              ),
+              Text(
+                "view all",
+                style: TextStyle(color: Colors.grey),
+              ),
+            ],
+          ),
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              SingleProduct( productName: "Fruits",
+                  productImage: "assets/vegetable1.jpg",),
+              SingleProduct( productName: "Fruits",
+                  productImage: "assets/vegetable1.jpg",),
+              SingleProduct( productName: "Fruits",
+                  productImage: "assets/vegetable1.jpg",),
+              SingleProduct( productName: "Fruits",
+                  productImage: "assets/vegetable1.jpg",),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+
+@override
+  void initState() {
+    ProductProvider productProvider = Provider.of(context, listen: false);
+    productProvider.fatchHerbsProductData();
+    // initproductProvider.fatchFreshProductData();
+    // initproductProvider.fatchRootProductData();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+
+
+productProvider = Provider.of(context);
+
     return Scaffold(
       backgroundColor: Color(0xffcbcbcb),
       drawer: DrawerSidee(),
@@ -27,7 +178,8 @@ class HomeScreen extends StatelessWidget {
             backgroundColor: Color(0xffd4d181),
             child: IconButton(
               onPressed: (() {
-                Navigator.of(context).push(MaterialPageRoute(builder: ((context) => Search())));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: ((context) => Search())));
               }),
               icon: Icon(
                 Icons.search,
@@ -118,84 +270,10 @@ class HomeScreen extends StatelessWidget {
                 Expanded(child: Container()),
               ]),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Hearbs Seasoning",
-                  ),
-                  Text(
-                    "view all",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  SingleProduct(),
-                  SingleProduct(),
-                  SingleProduct(),
-                  SingleProduct(),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Fresh Fruits",
-                  ),
-                  Text(
-                    "view all",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  SingleProduct(),
-                  SingleProduct(),
-                  SingleProduct(),
-                  SingleProduct(),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Fresh Fruits",
-                  ),
-                  Text(
-                    "view all",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  SingleProduct(),
-                  SingleProduct(),
-                  SingleProduct(),
-                  SingleProduct(),
-                ],
-              ),
-            ),
+            _buildHerbsProduct(),
+            _buildFreshProduct(),
+            _buildRootProduct(),
+
           ],
         ),
       ),
