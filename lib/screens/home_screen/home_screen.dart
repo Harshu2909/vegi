@@ -3,14 +3,12 @@ import 'package:provider/provider.dart';
 import 'package:vegi/screens/home_screen/drawer_sidee.dart';
 import 'package:vegi/screens/home_screen/single_product.dart';
 import 'package:vegi/screens/product_overview/product_overview.dart';
+import 'package:vegi/screens/review_cart/review_cart.dart';
 import 'package:vegi/screens/search/search.dart';
 
 import '../../providers/product_provider.dart';
 
 class HomeScreen extends StatefulWidget {
-
-  
-
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -18,9 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-
-late ProductProvider productProvider;
+  late ProductProvider productProvider;
 
   Widget _buildHerbsProduct() {
     return Column(
@@ -44,27 +40,41 @@ late ProductProvider productProvider;
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: [
-              GestureDetector(
-                child: SingleProduct(
-                  productName: "Fruits",
-                  productImage: "assets/vegetable1.jpg",
+            children: productProvider.getHerbsProductDataList.map(
+              (herbsProductData) {
+                return SingleProduct(
+                  productName: herbsProductData.productName,
+                  productImage: herbsProductData.productImage,
+                  productPrice: herbsProductData.productPrice,
                   // onTap: () {
-                  //   Navigator.of(context).push(MaterialPageRoute(
+                  //   Navigator.of(context).push(
+                  //     MaterialPageRoute(
                   //       builder: (context) => ProductOverview(
-                  //             productImage: "assets/vegetable1.jpg",
-                  //             productName: "hello",
-                  //           )));
+                  //         // productId: herbsProductData.productId,
+                  //         productPrice: herbsProductData.productPrice,
+                  //         productName: herbsProductData.productName,
+                  //         productImage: herbsProductData.productImage,
+                  //       ),
+                  //     ),
+                  //   );
                   // },
-                ),
-              ),
-              SingleProduct( productName: "Fruits",
-                  productImage: "assets/vegetable1.jpg",),
-              SingleProduct( productName: "Fruits",
-                  productImage: "assets/vegetable1.jpg",),
-              // SingleProduct( productName: "Fruits",
-              //     productImage: "assets/vegetable1.jpg",),
-            ],
+                );
+              },
+            ).toList(),
+            // children: [
+            // SingleProduct(
+            //   productName: "Fruits",
+            //   productImage: "assets/vegetable1.jpg",
+            // ),
+            // SingleProduct(
+            //   productName: "Fruits",
+            //   productImage: "assets/vegetable1.jpg",
+            // ),
+            // SingleProduct(
+            //   productName: "Fruits",
+            //   productImage: "assets/vegetable1.jpg",
+            // ),
+            // ],
           ),
         ),
       ],
@@ -93,16 +103,45 @@ late ProductProvider productProvider;
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: [
-              SingleProduct( productName: "Fruits",
-                  productImage: "assets/vegetable1.jpg",),
-              SingleProduct( productName: "Fruits",
-                  productImage: "assets/vegetable1.jpg",),
-              SingleProduct( productName: "Fruits",
-                  productImage: "assets/vegetable1.jpg",),
-              SingleProduct( productName: "Fruits",
-                  productImage: "assets/vegetable1.jpg",),
-            ],
+            children: productProvider.getFreshProductDataList.map(
+              (freshProductData) {
+                return SingleProduct(
+                  productName: freshProductData.productName,
+                  productImage: freshProductData.productImage,
+                  productPrice: freshProductData.productPrice,
+                  //  onTap: () {
+                  //   Navigator.of(context).push(
+                  //     MaterialPageRoute(
+                  //       builder: (context) => ProductOverview(
+                  //         // productId: freshProductData.productId,
+                  //         productImage: freshProductData.productImage,
+                  //         productName: freshProductData.productName,
+                  //         productPrice: freshProductData.productPrice,
+                  //       ),
+                  //     ),
+                  //   );
+                  // },
+                );
+              },
+            ).toList(),
+            // children: [
+            // SingleProduct(
+            //   productName: "Fruits",
+            //   productImage: "assets/vegetable1.jpg",
+            // ),
+            // SingleProduct(
+            //   productName: "Fruits",
+            //   productImage: "assets/vegetable1.jpg",
+            // ),
+            // SingleProduct(
+            //   productName: "Fruits",
+            //   productImage: "assets/vegetable1.jpg",
+            // ),
+            // SingleProduct(
+            //   productName: "Fruits",
+            //   productImage: "assets/vegetable1.jpg",
+            // ),
+            // ],
           ),
         ),
       ],
@@ -131,37 +170,66 @@ late ProductProvider productProvider;
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: [
-              SingleProduct( productName: "Fruits",
-                  productImage: "assets/vegetable1.jpg",),
-              SingleProduct( productName: "Fruits",
-                  productImage: "assets/vegetable1.jpg",),
-              SingleProduct( productName: "Fruits",
-                  productImage: "assets/vegetable1.jpg",),
-              SingleProduct( productName: "Fruits",
-                  productImage: "assets/vegetable1.jpg",),
-            ],
+            children: productProvider.getRootProductDataList.map(
+              (rootProductData) {
+                return SingleProduct(
+                  productName: rootProductData.productName,
+                  productImage: rootProductData.productImage,
+                  productPrice: rootProductData.productPrice,
+                  // onTap: () {
+                  //   Navigator.of(context).push(
+                  //     MaterialPageRoute(
+                  //       builder: (context) => ProductOverview(
+                  //         // productId: rootProductData.productId,
+                  //         productImage: rootProductData.productImage,
+                  //         productName: rootProductData.productName,
+                  //         productPrice: rootProductData.productPrice,
+                  //       ),
+                  //     ),
+                  //   );
+                  // },
+                  
+                  
+                );
+              },
+            ).toList(),
+
+            // children: [
+            // SingleProduct(
+            //   productName: "Fruits",
+            //   productImage: "assets/vegetable1.jpg",
+            // ),
+            // SingleProduct(
+            //   productName: "Fruits",
+            //   productImage: "assets/vegetable1.jpg",
+            // ),
+            // SingleProduct(
+            //   productName: "Fruits",
+            //   productImage: "assets/vegetable1.jpg",
+            // ),
+            // SingleProduct(
+            //   productName: "Fruits",
+            //   productImage: "assets/vegetable1.jpg",
+            // ),
+            // ],
           ),
         ),
       ],
     );
   }
 
-
-@override
+  @override
   void initState() {
     ProductProvider productProvider = Provider.of(context, listen: false);
     productProvider.fatchHerbsProductData();
-    // initproductProvider.fatchFreshProductData();
-    // initproductProvider.fatchRootProductData();
+    productProvider.fatchFreshProductData();
+    productProvider.fatchRootProductData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
-
-productProvider = Provider.of(context);
+    productProvider = Provider.of(context);
 
     return Scaffold(
       backgroundColor: Color(0xffcbcbcb),
@@ -191,14 +259,20 @@ productProvider = Provider.of(context);
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: CircleAvatar(
-              radius: 17,
-              backgroundColor: Color(0xffd4d181),
-              child: Icon(
+            radius: 17,
+            backgroundColor: Color(0xffd4d181),
+            child: IconButton(
+              onPressed: (() {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: ((context) => ReviewCart())));
+              }),
+              icon: Icon(
                 Icons.shop,
                 size: 20,
                 color: Colors.black,
               ),
             ),
+          ),
           )
         ],
         backgroundColor: Color(0xffd6b738),
@@ -273,7 +347,6 @@ productProvider = Provider.of(context);
             _buildHerbsProduct(),
             _buildFreshProduct(),
             _buildRootProduct(),
-
           ],
         ),
       ),

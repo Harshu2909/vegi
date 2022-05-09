@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class SingleProduct extends StatelessWidget {
   final String productImage;
    final String productName;
+   final int productPrice;
   //  final Function onTap;
-  SingleProduct({required this.productImage, required this.productName, });
+  SingleProduct({required this.productImage, required this.productName,required this.productPrice,});
 
   
 
@@ -19,9 +20,10 @@ class SingleProduct extends StatelessWidget {
       child: Column(children: [
         Expanded(
             flex: 2,
-            child: Image(
-                 fit: BoxFit.cover, 
-                image: AssetImage(productImage))),
+            child:Image.network(productImage),),
+            //  Image(
+            //      fit: BoxFit.cover, 
+            //     image: AssetImage(productImage))),
         Expanded(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -32,7 +34,7 @@ class SingleProduct extends StatelessWidget {
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
             Text(
-              '\$50\/50 Grams',
+              '$productPrice\$/50 Grams',
               style: TextStyle(fontSize: 10),
             ),
 

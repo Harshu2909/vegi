@@ -4,7 +4,7 @@ import 'package:vegi/screens/my%20profile/my_profile.dart';
 import 'package:vegi/screens/review_cart/review_cart.dart';
 
 class DrawerSidee extends StatelessWidget {
-  const DrawerSidee({Key? key,   child}) : super(key: key);
+  // const DrawerSidee({Key? key,   child}) : super(key: key);
 
 
   Widget listTile({IconData? icon, String? title, Function? onTap}) {
@@ -64,7 +64,7 @@ class DrawerSidee extends StatelessWidget {
               listTile(
                
                 icon: Icons.shop_outlined, title: "Review Cart",  onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ReviewCart()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>ReviewCart()));
                 },),
               listTile(
                 onTap: (){

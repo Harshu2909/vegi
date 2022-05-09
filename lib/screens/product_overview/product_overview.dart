@@ -127,7 +127,7 @@ class _ProductOverviewState extends State<ProductOverview> {
                               )
                             ],
                           ),
-                          Text("50\$"),
+                          Text("\$${widget.productPrice}"),
                           Container(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 30, vertical: 10),
